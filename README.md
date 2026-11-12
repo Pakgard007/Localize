@@ -41,6 +41,8 @@ colcon build --symlink-install --cmake-args -DCMAKE_BUILD_TYPE=Release
 source install/setup.bash
 
 ros2 launch lidar_localization_ros2 lidar_localization.launch.py
+# use another map:
+ros2 launch lidar_localization_ros2 lidar_localization.launch.py map_path:=$HOME/1Localize/src/MakrocloudMerged.pcd
 ```
 
 Then set the initial pose in RViz with **2D Pose Estimate** if the cart does not start at the map origin.
@@ -51,7 +53,7 @@ Then set the initial pose in RViz with **2D Pose Estimate** if the cart does not
 
 | Parameter | Value | Note |
 |---|---|---|
-| `map_path` | `/home/mag/1Localize/src/reMapcloudMerged.pcd` | ⚠️ **Change to your own path** |
+| `map_path` | launch argument, default `~/1Localize/src/reMapcloudMerged.pcd` | override with `map_path:=...` |
 | `registration_method` | `NDT_OMP` | or `GICP_OMP` |
 | `ndt_resolution` | `2.0` | m |
 | `voxel_leaf_size` | `0.5` | scan downsampling, m |

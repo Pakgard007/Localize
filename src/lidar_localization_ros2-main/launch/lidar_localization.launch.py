@@ -45,12 +45,18 @@ def generate_launch_description():
             'param',  
             'localization.yaml'))
 
+    # map_path:=/path/to/map.pcd overrides the one in localization.yaml, so the
+    # map can be chosen without editing the yaml or rebuilding.
+    map_path = launch.substitutions.LaunchConfiguration(
+        'map_path',
+        default=os.path.expanduser('~/1Localize/src/reMapcloudMerged.pcd'))
+
     lidar_localization = launch_ros.actions.LifecycleNode(
         name='lidar_localization',
         namespace='',
         package='lidar_localization_ros2',
         executable='lidar_localization_node',
-        parameters=[localization_param_dir],
+        parameters=[localization_param_dir, {'map_path': map_path}],
         remappings=[
             ('/cloud', '/ouster/points'),
             ('odom', '/odometry'),

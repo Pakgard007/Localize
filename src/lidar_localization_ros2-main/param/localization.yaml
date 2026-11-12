@@ -12,7 +12,7 @@
       scan_min_range: 1.5
       scan_period: 0.02
       use_pcd_map: true
-      map_path: "/home/mag/1Localize/src/reMapcloudMerged.pcd"
+      map_path: ""   # set by the launch file (default ~/1Localize/src/reMapcloudMerged.pcd, override with map_path:=...)
       set_initial_pose: true
       initial_pose_x: 0.0
       initial_pose_y: 0.0
